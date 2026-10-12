@@ -132,7 +132,7 @@
 
     /* Rooms */
     .rooms { background: var(--paper); border-radius: 40px; }
-    .room-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .room-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; max-width: 820px; margin-inline: auto; }
     .room-card {
       background: var(--cream); border-radius: var(--radius); overflow: hidden;
       box-shadow: var(--shadow); display: flex; flex-direction: column;
@@ -260,7 +260,7 @@
 
     /* Responsive */
     @media (max-width: 960px) {
-      .room-grid, .steps { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
       .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .hero-photo { max-width: 520px; }
       .hero-badge { left: 16px; }
@@ -348,80 +348,62 @@
 
         <div class="room-grid">
           <article class="room-card">
-            <div class="room-img carousel" aria-roledescription="carousel" aria-label="Mango Studio photos">
+            <div class="room-img carousel" aria-roledescription="carousel" aria-label="Origin Plug &amp; Play E22 Station photos">
               <div class="carousel-track">
+                <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80"
+                     alt="Origin Plug &amp; Play E22 Station: living area" loading="lazy" width="800" height="600" />
                 <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=800&q=80"
-                     alt="Mango Studio: bedroom with a double bed and soft lighting" loading="lazy" width="800" height="600" />
+                     alt="Origin Plug &amp; Play E22 Station: bedroom" loading="lazy" width="800" height="600" />
                 <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80"
-                     alt="Mango Studio: compact kitchen area" loading="lazy" width="800" height="600" />
+                     alt="Origin Plug &amp; Play E22 Station: kitchen" loading="lazy" width="800" height="600" />
                 <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=800&q=80"
-                     alt="Mango Studio: clean bathroom" loading="lazy" width="800" height="600" />
+                     alt="Origin Plug &amp; Play E22 Station: bathroom" loading="lazy" width="800" height="600" />
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80"
+                     alt="Origin Plug &amp; Play E22 Station: building facilities" loading="lazy" width="800" height="600" />
               </div>
-              <span class="room-tag">Studio · 28 m²</span>
+              <span class="room-tag">24 sqm · Floor 11</span>
             </div>
             <div class="room-body">
-              <h3>Mango Studio</h3>
+              <h3>Origin Plug &amp; Play E22 Station</h3>
               <p class="room-loc">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
-                Lat Phrao Soi 15 · 5 min to MRT
+                BTS Sai Luat · Floor 11
               </p>
-              <p class="price">฿8,500 <small>/ month</small></p>
+              <p class="price">฿18,000 <small>/ month</small></p>
               <ul class="amenities">
-                <li>Air-con</li><li>Wi-Fi</li><li>Furnished</li><li>Washer</li>
+                <li>1 bed · 1 bath</li><li>24 sqm</li><li>Pet-friendly</li><li>Move-in ready</li>
               </ul>
-              <a href="https://wa.me/66xxxxxxxxx?text=Hi%20Fon%2C%20I'm%20interested%20in%20Mango%20Studio%20(Lat%20Phrao%20Soi%2015)" class="btn" target="_blank" rel="noopener">Interested? Chat</a>
+              <a href="https://wa.me/66xxxxxxxxx?text=Hi%20Fon%2C%20I'm%20interested%20in%20Origin%20Plug%20%26%20Play%20E22%20Station%20(BTS%20Sai%20Luat%2C%20Floor%2011)" class="btn" target="_blank" rel="noopener">Interested? Chat</a>
             </div>
           </article>
 
           <article class="room-card">
-            <div class="room-img carousel" aria-roledescription="carousel" aria-label="Tea Leaf Condo photos">
+            <div class="room-img carousel" aria-roledescription="carousel" aria-label="The Muve Paw Bangkhae photos">
               <div class="carousel-track">
                 <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80"
-                     alt="Tea Leaf Condo: light living area and kitchen" loading="lazy" width="800" height="600" />
+                     alt="The Muve Paw Bangkhae: living area" loading="lazy" width="800" height="600" />
                 <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=800&q=80"
-                     alt="Tea Leaf Condo: bedroom" loading="lazy" width="800" height="600" />
-                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80"
-                     alt="Tea Leaf Condo: swimming pool" loading="lazy" width="800" height="600" />
+                     alt="The Muve Paw Bangkhae: bedroom" loading="lazy" width="800" height="600" />
+                <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80"
+                     alt="The Muve Paw Bangkhae: kitchen" loading="lazy" width="800" height="600" />
+                <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80"
+                     alt="The Muve Paw Bangkhae: bedroom detail" loading="lazy" width="800" height="600" />
+                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
+                     alt="The Muve Paw Bangkhae: room overview" loading="lazy" width="800" height="600" />
               </div>
-              <span class="room-tag">1 Bedroom · 35 m²</span>
+              <span class="room-tag">24.51 sqm · Floor 5</span>
             </div>
             <div class="room-body">
-              <h3>Tea Leaf Condo</h3>
+              <h3>The Muve Paw Bangkhae</h3>
               <p class="room-loc">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
-                Chok Chai 4 · Near Union Mall
+                Floor 5
               </p>
               <p class="price">฿13,000 <small>/ month</small></p>
               <ul class="amenities">
-                <li>Pool</li><li>Gym</li><li>Balcony</li><li>24h security</li>
+                <li>1 bed · 1 bath</li><li>24.51 sqm</li><li>New room</li>
               </ul>
-              <a href="https://wa.me/66xxxxxxxxx?text=Hi%20Fon%2C%20I'm%20interested%20in%20Tea%20Leaf%20Condo%20(Chok%20Chai%204)" class="btn" target="_blank" rel="noopener">Interested? Chat</a>
-            </div>
-          </article>
-
-          <article class="room-card">
-            <div class="room-img carousel" aria-roledescription="carousel" aria-label="Sticky Rice Residence photos">
-              <div class="carousel-track">
-                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
-                     alt="Sticky Rice Residence: spacious living room" loading="lazy" width="800" height="600" />
-                <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=800&q=80"
-                     alt="Sticky Rice Residence: kitchen and dining area" loading="lazy" width="800" height="600" />
-                <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=80"
-                     alt="Sticky Rice Residence: second bedroom" loading="lazy" width="800" height="600" />
-              </div>
-              <span class="room-tag">2 Bedrooms · 52 m²</span>
-            </div>
-            <div class="room-body">
-              <h3>Sticky Rice Residence</h3>
-              <p class="room-loc">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
-                Ratchada · Near MRT Lat Phrao
-              </p>
-              <p class="price">฿19,500 <small>/ month</small></p>
-              <ul class="amenities">
-                <li>Fully furnished</li><li>Parking</li><li>Pool</li><li>Pet-friendly</li>
-              </ul>
-              <a href="https://wa.me/66xxxxxxxxx?text=Hi%20Fon%2C%20I'm%20interested%20in%20Sticky%20Rice%20Residence%20(Ratchada)" class="btn" target="_blank" rel="noopener">Interested? Chat</a>
+              <a href="https://wa.me/66xxxxxxxxx?text=Hi%20Fon%2C%20I'm%20interested%20in%20The%20Muve%20Paw%20Bangkhae%20(Floor%205)" class="btn" target="_blank" rel="noopener">Interested? Chat</a>
             </div>
           </article>
         </div>
