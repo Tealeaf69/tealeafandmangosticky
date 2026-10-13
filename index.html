@@ -3,186 +3,236 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>TeaLeafAndMangoSticky — Easy rooms in Bangkok</title>
-  <meta name="description" content="Affordable rooms and condos in Bangkok — Sai Luat, Bangkhae, Lat Phrao and beyond. Simple, honest help from Fon. Chat on LINE or WhatsApp." />
-  <meta name="theme-color" content="#f4f5f2" />
+  <title>TeaLeafAndMangoSticky — Affordable rooms near BTS &amp; MRT in Bangkok</title>
+  <meta name="description" content="Affordable rooms and condos near BTS and MRT stations in Bangkok. Clear prices, real photos and personal help from Fon in Thai or English. Contact via LINE or WhatsApp." />
+  <meta name="theme-color" content="#f5f6f3" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
+    /* =========================================================
+       Design tokens
+       ========================================================= */
     :root {
-      --bg: #f4f5f2;
+      --bg: #f5f6f3;
       --card: #ffffff;
-      --ink: #1f2420;
-      --ink-2: #4b524c;
-      --muted: #7b827c;
-      --hair: #e8ebe6;
-      --mango: #f59e2b;
-      --mango-deep: #e0861a;
-      --mango-soft: #fff1de;
-      --leaf: #3f8f5a;
-      --leaf-deep: #2e6f45;
-      --leaf-soft: #e6f3ea;
+      --ink: #17201b;
+      --ink-2: #47514a;
+      --muted: #7a837c;
+      --hair: #e6e9e4;
+      --hair-2: #eff1ed;
+
+      --leaf: #2f7d4f;
+      --leaf-deep: #23603c;
+      --leaf-soft: #e8f3ec;
+      --mango: #f29a2e;
+      --mango-deep: #c97612;
+      --mango-soft: #fff3e3;
+
+      --bts: #4c9a2a;
+      --mrt: #2b5ea7;
+
       --line: #06c755;
       --wa: #25d366;
-      --wa-ink: #073d1c;
-      --r-lg: 24px;
+      --wa-hover: #1ebe5a;
+      --wa-ink: #06331a;
+
+      --r-xl: 28px;
+      --r-lg: 22px;
       --r-md: 16px;
       --r-sm: 12px;
-      --shadow: 0 1px 2px rgba(31,36,32,.04), 0 8px 24px rgba(31,36,32,.06);
-      --shadow-lift: 0 2px 4px rgba(31,36,32,.05), 0 16px 36px rgba(31,36,32,.10);
+
+      --shadow-sm: 0 1px 2px rgba(23,32,27,.05);
+      --shadow: 0 1px 2px rgba(23,32,27,.04), 0 10px 30px rgba(23,32,27,.06);
+      --shadow-lift: 0 2px 6px rgba(23,32,27,.05), 0 18px 40px rgba(23,32,27,.09);
+
       --font: "Plus Jakarta Sans", "Noto Sans Thai", system-ui, -apple-system, "Segoe UI", sans-serif;
       --thai: "Noto Sans Thai", "Plus Jakarta Sans", system-ui, sans-serif;
     }
 
+    /* =========================================================
+       Base
+       ========================================================= */
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
-      margin: 0; font-family: var(--font); color: var(--ink); background: var(--bg);
-      line-height: 1.6; -webkit-font-smoothing: antialiased;
+      margin: 0; font-family: var(--font); font-size: 16px; color: var(--ink); background: var(--bg);
+      line-height: 1.6; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
     }
     [lang="th"] { font-family: var(--thai); line-height: 1.75; }
     img { max-width: 100%; display: block; }
     a { color: inherit; }
-    h1, h2, h3 { line-height: 1.2; margin: 0; letter-spacing: -.02em; }
-    button { font: inherit; }
-    :focus-visible { outline: 3px solid var(--mango); outline-offset: 3px; }
+    h1, h2, h3 { margin: 0; line-height: 1.18; letter-spacing: -.022em; }
+    p { margin: 0; }
+    button { font: inherit; color: inherit; }
+    :focus-visible { outline: 3px solid var(--mango); outline-offset: 3px; border-radius: 6px; }
 
-    .wrap { width: min(1080px, 100% - 32px); margin-inline: auto; }
-    section { padding: 40px 0; }
-    .section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
-    .section-title h2 { font-size: 1.45rem; font-weight: 800; }
-    .section-title .sub { color: var(--muted); font-size: .92rem; margin: 4px 0 0; }
-    .kicker { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--leaf); margin-bottom: 6px; }
+    .wrap { width: min(1100px, 100% - 32px); margin-inline: auto; }
+    section { padding: 48px 0; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--leaf);
+    }
+    .eyebrow::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: currentColor; }
+    .section-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 8px 24px; margin-bottom: 24px; }
+    .section-head h2 { font-size: clamp(1.5rem, 3.6vw, 1.9rem); font-weight: 800; margin-top: 8px; }
+    .section-head .sub { color: var(--muted); font-size: .95rem; margin-top: 6px; max-width: 560px; }
 
-    /* ---------- Buttons ---------- */
+    /* =========================================================
+       Buttons
+       ========================================================= */
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      min-height: 52px; padding: 0 22px; border-radius: 999px; border: 0;
-      font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer; white-space: nowrap;
-      transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+      min-height: 50px; padding: 0 22px; border-radius: 999px; border: 0;
+      font-weight: 700; font-size: .98rem; letter-spacing: -.005em; text-decoration: none; cursor: pointer; white-space: nowrap;
+      transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
     }
-    .btn:active { transform: scale(.98); }
-    .btn svg { width: 22px; height: 22px; flex-shrink: 0; }
-    .btn-wa { background: var(--wa); color: var(--wa-ink); box-shadow: 0 6px 16px rgba(37,211,102,.28); }
-    .btn-wa:hover { background: #1fc25c; }
-    .btn-line { background: var(--line); color: #fff; box-shadow: 0 6px 16px rgba(6,199,85,.25); }
+    .btn:active { transform: scale(.985); }
+    .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .btn-wa { background: var(--wa); color: var(--wa-ink); }
+    .btn-wa:hover { background: var(--wa-hover); }
+    .btn-line { background: var(--line); color: #fff; }
     .btn-line:hover { background: #05b24c; }
-    .btn-mango { background: var(--mango); color: #2b1a03; box-shadow: 0 6px 16px rgba(245,158,43,.3); }
-    .btn-mango:hover { background: var(--mango-deep); }
-    .btn-ghost { background: var(--card); color: var(--ink); border: 1.5px solid var(--hair); }
-    .btn-icon { width: 52px; padding: 0; flex-shrink: 0; }
+    .btn-outline { background: var(--card); color: var(--ink); border: 1.5px solid var(--hair); }
+    .btn-outline:hover { border-color: #cfd5cc; }
+    .btn-outline .line-ic { color: var(--line); }
+    .btn-dark { background: var(--ink); color: #fff; }
+    .btn-dark:hover { background: #26302a; }
 
-    /* ---------- App bar ---------- */
+    /* =========================================================
+       App bar
+       ========================================================= */
     .appbar {
       position: sticky; top: 0; z-index: 40;
-      background: rgba(244,245,242,.88); backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px);
-      border-bottom: 1px solid rgba(31,36,32,.05);
+      background: rgba(245,246,243,.86);
+      backdrop-filter: saturate(1.5) blur(14px); -webkit-backdrop-filter: saturate(1.5) blur(14px);
+      border-bottom: 1px solid rgba(23,32,27,.06);
     }
     .appbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 64px; }
     .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; min-width: 0; }
     .brand-mark {
-      width: 38px; height: 38px; border-radius: 12px; flex-shrink: 0;
-      background: linear-gradient(140deg, #ffc56b, var(--mango)); display: grid; place-items: center;
+      width: 36px; height: 36px; border-radius: 11px; flex-shrink: 0;
+      background: linear-gradient(145deg, #ffc66e, var(--mango)); display: grid; place-items: center;
       box-shadow: inset 0 -2px 0 rgba(0,0,0,.08);
     }
-    .brand-mark svg { width: 20px; height: 20px; }
-    .brand-name { font-weight: 800; font-size: 1.02rem; letter-spacing: -.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .brand-mark svg { width: 19px; height: 19px; }
+    .brand-name { font-weight: 800; font-size: 1rem; letter-spacing: -.025em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .brand-name em { font-style: normal; color: var(--mango-deep); }
-    .appbar nav { display: flex; align-items: center; gap: 4px; }
-    .appbar nav a.link { text-decoration: none; color: var(--ink-2); font-weight: 600; font-size: .92rem; padding: 8px 12px; border-radius: 999px; }
+    .appbar nav { display: flex; align-items: center; gap: 2px; }
+    .appbar nav a.link { text-decoration: none; color: var(--ink-2); font-weight: 600; font-size: .9rem; padding: 8px 14px; border-radius: 999px; transition: background .15s ease; }
     .appbar nav a.link:hover { background: var(--card); }
-    .appbar .btn { min-height: 42px; padding: 0 16px; font-size: .92rem; box-shadow: none; }
-    .appbar .btn svg { width: 18px; height: 18px; }
+    .appbar .btn { min-height: 40px; padding: 0 16px; font-size: .9rem; margin-left: 6px; }
+    .appbar .btn svg { width: 17px; height: 17px; }
 
-    /* ---------- Hero + search ---------- */
-    .hero { padding: 28px 0 8px; }
-    .hello { display: inline-flex; align-items: center; gap: 8px; background: var(--card); border-radius: 999px; padding: 6px 14px 6px 6px; box-shadow: var(--shadow); font-size: .88rem; font-weight: 600; color: var(--ink-2); margin-bottom: 16px; }
-    .hello .avatar-sm { width: 28px; height: 28px; border-radius: 50%; background: var(--leaf-soft); color: var(--leaf-deep); display: grid; place-items: center; font-weight: 800; font-size: .85rem; }
-    .hello .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--wa); box-shadow: 0 0 0 3px rgba(37,211,102,.2); }
-    .hero h1 { font-size: clamp(2rem, 7vw, 3.1rem); font-weight: 800; max-width: 640px; }
+    /* =========================================================
+       Hero
+       ========================================================= */
+    .hero { padding: 32px 0 12px; }
+    .hero h1 { font-size: clamp(2rem, 6.4vw, 3.2rem); font-weight: 800; max-width: 720px; margin-top: 14px; }
     .hero h1 span { color: var(--leaf); }
-    .hero-lead { color: var(--ink-2); font-size: 1.05rem; margin: 12px 0 4px; max-width: 560px; }
-    .hero-thai { color: var(--muted); font-size: .98rem; margin: 0 0 22px; max-width: 560px; }
+    .hero-lead { color: var(--ink-2); font-size: 1.06rem; margin-top: 14px; max-width: 580px; }
+    .hero-thai { color: var(--muted); font-size: .96rem; margin-top: 6px; max-width: 580px; }
+    .hero-agent {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 20px;
+      background: var(--card); border-radius: 999px; padding: 6px 16px 6px 6px; box-shadow: var(--shadow-sm);
+      border: 1px solid var(--hair-2); font-size: .86rem; color: var(--ink-2);
+    }
+    .hero-agent .avatar-sm { width: 30px; height: 30px; border-radius: 50%; background: var(--leaf-soft); color: var(--leaf-deep); display: grid; place-items: center; font-weight: 800; font-size: .85rem; }
+    .hero-agent strong { color: var(--ink); }
+    .hero-agent .online { width: 8px; height: 8px; border-radius: 50%; background: var(--wa); box-shadow: 0 0 0 3px rgba(37,211,102,.18); }
 
-    /* ---------- Skytrain map finder ---------- */
-    .finder { --bts: #6cb33f; --bts-dark: #2f6b3a; --mrt: #2f63a8; background: var(--card); border-radius: var(--r-lg); box-shadow: var(--shadow-lift); padding: 20px 18px 16px; }
-    .finder-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-    .finder-head h2 { font-size: 1.15rem; font-weight: 800; }
-    .finder-head h2 .tag { display: inline-block; vertical-align: 3px; margin-left: 6px; font-size: .68rem; font-weight: 800; letter-spacing: .06em; color: #fff; background: var(--bts); padding: 3px 8px; border-radius: 6px; }
-    .finder-head p { margin: 2px 0 0; color: var(--muted); font-size: .88rem; }
-    .finder-head .results-count { background: var(--bg); padding: 6px 12px; border-radius: 999px; color: var(--ink-2); }
-    .map-scroll { overflow-x: auto; overflow-y: hidden; margin: 4px -18px 0; padding: 0 18px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+    .trust { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 20px; color: var(--ink-2); font-size: .88rem; font-weight: 600; }
+    .trust span { display: inline-flex; align-items: center; gap: 7px; }
+    .trust svg { width: 17px; height: 17px; color: var(--leaf); }
+
+    /* =========================================================
+       Station finder
+       ========================================================= */
+    .finder {
+      margin-top: 28px; background: var(--card); border-radius: var(--r-xl);
+      box-shadow: var(--shadow-lift); border: 1px solid var(--hair-2); padding: 22px 20px 18px;
+    }
+    .finder-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 10px 16px; }
+    .finder-head h2 { font-size: 1.12rem; font-weight: 800; }
+    .finder-head .sub { color: var(--ink-2); font-size: .9rem; margin-top: 3px; }
+    .finder-head .sub-th { color: var(--muted); font-size: .82rem; }
+    .results {
+      display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+      font-size: .84rem; font-weight: 700; color: var(--ink); background: var(--bg); border-radius: 999px; padding: 7px 14px;
+    }
+    .results::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--leaf); }
+
+    .map-scroll {
+      overflow-x: auto; overflow-y: hidden; margin: 12px -20px 0; padding: 0 20px;
+      scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
     .map-scroll::-webkit-scrollbar { display: none; }
-    .map { position: relative; min-width: 660px; padding: 52px 0 4px; }
-    /* elevated guideway: green rail on a concrete beam, with pillars */
-    .map-line { position: absolute; top: 56px; height: 10px; border-radius: 5px;
-      background: linear-gradient(180deg, var(--bts) 0 4px, #dfe4dc 4px 10px); }
-    .map-line::after { content: ""; position: absolute; left: 10px; right: 10px; top: 10px; height: 12px;
-      background: repeating-linear-gradient(90deg, #e3e7e0 0 6px, transparent 6px 46px); }
+    .map { position: relative; min-width: 640px; padding: 40px 0 2px; }
+    .track, .track-fill { position: absolute; top: 46px; height: 4px; border-radius: 4px; }
+    .track { background: var(--hair); }
+    .track-fill { background: var(--leaf); width: 0; transition: width .75s cubic-bezier(.65,0,.35,1); }
     .stops { list-style: none; margin: 0; padding: 0; display: flex; position: relative; }
     .stops li { flex: 1; display: flex; justify-content: center; }
-    .stop { display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%;
-      padding: 0 2px 8px; background: none; border: 0; border-radius: var(--r-sm); cursor: pointer; color: var(--ink); }
-    .stop-dot { width: 18px; height: 18px; border-radius: 50%; background: #fff; border: 4px solid var(--bts-dark);
-      margin-bottom: 10px; position: relative; z-index: 1; transition: transform .25s ease, border-color .25s ease, background .25s ease; }
-    .stop.mrt .stop-dot { border-color: var(--mrt); }
-    .stop:hover .stop-dot { transform: scale(1.15); }
-    .stop[aria-pressed="true"] .stop-dot { border-color: var(--mango); background: var(--mango-soft); transform: scale(1.3); }
-    .stop[aria-pressed="true"] .stop-dot::after { content: ""; position: absolute; inset: -8px; border-radius: 50%; background: rgba(245,158,43,.2); animation: ping 1.6s ease-out infinite; }
-    @keyframes ping { 0% { transform: scale(.6); opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
-    .code { font-size: .66rem; font-weight: 800; letter-spacing: .03em; color: #fff; background: var(--bts-dark);
-      min-width: 30px; text-align: center; padding: 0 7px; line-height: 18px; border-radius: 6px; margin-bottom: 3px; }
-    .stop.mrt .code { background: var(--mrt); }
-    .stop.all .code { background: var(--ink); }
-    .stop[aria-pressed="true"] .code { background: var(--mango); color: #2b1a03; }
-    .stop-name { font-size: .88rem; font-weight: 700; line-height: 1.2; }
-    .stop[aria-pressed="true"] .stop-name { color: var(--mango-deep); }
-    .stop-th { font-size: .74rem; color: var(--muted); line-height: 1.4; }
-    .stop-count { margin-top: 4px; font-size: .7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--leaf-soft); color: var(--leaf-deep); }
-    .stop-count.zero { background: transparent; color: #a9aea9; font-weight: 600; }
-    /* the skytrain */
-    .train { position: absolute; top: 28px; left: 0; width: 88px; height: 30px; z-index: 2; pointer-events: none; transition: left .9s cubic-bezier(.55,.05,.35,1); }
-    .train svg { width: 100%; height: 100%; transition: transform .3s ease; overflow: visible; }
-    .train.flip svg { transform: scaleX(-1); }
-    .train.moving .car { animation: sway .2s ease-in-out infinite alternate; }
-    @keyframes sway { to { transform: translateY(-1px); } }
-    .train .speed { position: absolute; top: 9px; right: 100%; width: 22px; height: 12px; opacity: 0; transition: opacity .2s ease;
-      background: repeating-linear-gradient(180deg, rgba(108,179,63,.55) 0 2px, transparent 2px 5px); border-radius: 2px; margin-right: 4px; }
-    .train.flip .speed { right: auto; left: 100%; margin: 0 0 0 4px; }
-    .train.moving .speed { opacity: 1; }
-    .finder-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; border-top: 1px solid var(--hair); margin-top: 8px; padding-top: 14px; }
-    .budget { min-width: 0; flex: 1 1 320px; }
-    .budget .label { display: block; font-size: .8rem; font-weight: 700; color: var(--ink-2); margin-bottom: 8px; }
-    .budget .label span { font-weight: 500; color: var(--muted); margin-left: 4px; }
-    .legend { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: .78rem; color: var(--muted); }
-    .legend span { display: inline-flex; align-items: center; gap: 5px; }
-    .legend b { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
-    .legend .hint { display: inline; }
-    .chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 0 -18px; padding: 2px 18px; }
-    .chips::-webkit-scrollbar { display: none; }
-    .chip {
-      flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px;
-      min-height: 42px; padding: 0 16px; border-radius: 999px; cursor: pointer;
-      background: var(--bg); border: 1.5px solid transparent; color: var(--ink-2); font-weight: 600; font-size: .92rem;
-      transition: background .15s ease, color .15s ease, border-color .15s ease;
+    .stop {
+      display: flex; flex-direction: column; align-items: center; width: 100%;
+      padding: 0 4px 6px; background: none; border: 0; border-radius: var(--r-sm); cursor: pointer;
     }
-    .chip:hover { border-color: var(--hair); background: #eef0ec; }
-    .chip[aria-pressed="true"] { background: var(--ink); color: #fff; }
-    .chip .n { font-size: .75rem; font-weight: 700; background: rgba(0,0,0,.07); border-radius: 999px; padding: 1px 7px; }
-    .chip[aria-pressed="true"] .n { background: rgba(255,255,255,.2); }
-    .chip svg { width: 15px; height: 15px; }
+    .stop-dot {
+      width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3px solid var(--bts);
+      position: relative; z-index: 1; transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+    .stop.mrt .stop-dot { border-color: var(--mrt); }
+    .stop.all .stop-dot { border-color: var(--ink); }
+    .stop:hover .stop-dot { transform: scale(1.12); }
+    .stop[aria-pressed="true"] .stop-dot { background: var(--leaf); border-color: var(--leaf); box-shadow: 0 0 0 5px rgba(47,125,79,.16); }
+    .code {
+      margin-top: 12px; font-size: .64rem; font-weight: 800; letter-spacing: .04em; line-height: 1;
+      padding: 4px 7px; border-radius: 6px; border: 1.5px solid currentColor; color: var(--bts);
+    }
+    .stop.mrt .code { color: var(--mrt); }
+    .stop.all .code { color: var(--ink-2); }
+    .stop-name { margin-top: 7px; font-size: .86rem; font-weight: 700; color: var(--ink); line-height: 1.25; }
+    .stop-th { font-size: .72rem; color: var(--muted); line-height: 1.5; }
+    .stop-count { margin-top: 3px; font-size: .72rem; font-weight: 600; color: var(--muted); }
+    .stop-count.has { color: var(--leaf); font-weight: 700; }
+    .stop[aria-pressed="true"] .stop-name { color: var(--leaf-deep); }
 
-    .trust { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; color: var(--ink-2); font-size: .88rem; font-weight: 600; }
-    .trust span { display: inline-flex; align-items: center; gap: 6px; }
-    .trust svg { width: 18px; height: 18px; color: var(--leaf); }
+    .train {
+      position: absolute; top: 23px; left: 0; width: 52px; height: 22px; z-index: 2; pointer-events: none;
+      transition: left .75s cubic-bezier(.65,0,.35,1);
+    }
+    .train svg { width: 100%; height: 100%; transition: transform .25s ease; }
+    .train.flip svg { transform: scaleX(-1); }
 
-    /* ---------- Rooms ---------- */
-    .results-count { color: var(--muted); font-size: .9rem; font-weight: 600; white-space: nowrap; }
-    .room-grid { display: grid; gap: 20px; }
+    .finder-foot {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 20px;
+      border-top: 1px solid var(--hair-2); margin-top: 14px; padding-top: 16px;
+    }
+    .budget { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; min-width: 0; }
+    .budget .label { font-size: .84rem; font-weight: 700; color: var(--ink-2); }
+    .budget .label span { font-weight: 500; color: var(--muted); margin-left: 4px; }
+    .segmented { display: inline-flex; gap: 4px; padding: 4px; background: var(--bg); border-radius: 999px; max-width: 100%; overflow-x: auto; scrollbar-width: none; }
+    .segmented::-webkit-scrollbar { display: none; }
+    .seg {
+      flex-shrink: 0; min-height: 38px; padding: 0 14px; border: 0; border-radius: 999px; cursor: pointer;
+      background: transparent; color: var(--ink-2); font-weight: 600; font-size: .86rem; white-space: nowrap;
+      transition: background .15s ease, color .15s ease, box-shadow .15s ease;
+    }
+    .seg:hover { color: var(--ink); }
+    .seg[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: 0 1px 3px rgba(23,32,27,.12); }
+    .legend { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; font-size: .78rem; color: var(--muted); }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend i { width: 10px; height: 10px; border-radius: 50%; border: 2.5px solid; display: inline-block; }
+    .legend .hint { display: inline; }
+
+    /* =========================================================
+       Rooms
+       ========================================================= */
+    .room-grid { display: grid; gap: 24px; }
     .room {
-      background: var(--card); border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow);
-      display: flex; flex-direction: column; transition: box-shadow .2s ease, transform .2s ease;
+      background: var(--card); border-radius: var(--r-xl); overflow: hidden;
+      box-shadow: var(--shadow); border: 1px solid var(--hair-2);
+      display: flex; flex-direction: column; transition: box-shadow .2s ease;
     }
     .room:hover { box-shadow: var(--shadow-lift); }
     .room[hidden] { display: none; }
@@ -191,110 +241,151 @@
     .gallery-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
     .gallery-track::-webkit-scrollbar { display: none; }
     .gallery-track img { flex: 0 0 100%; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; scroll-snap-align: start; background: #e9ece6; }
-    .g-badges { position: absolute; top: 12px; left: 12px; display: flex; flex-wrap: wrap; gap: 6px; z-index: 2; pointer-events: none; }
-    .badge { display: inline-flex; align-items: center; gap: 5px; font-size: .78rem; font-weight: 700; padding: 6px 11px; border-radius: 999px; background: rgba(255,255,255,.95); color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+    .g-badges { position: absolute; top: 14px; left: 14px; display: flex; flex-wrap: wrap; gap: 6px; z-index: 2; pointer-events: none; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px; font-size: .76rem; font-weight: 700;
+      padding: 6px 11px; border-radius: 999px; background: rgba(255,255,255,.96); color: var(--ink);
+      box-shadow: 0 2px 10px rgba(0,0,0,.08);
+    }
     .badge svg { width: 14px; height: 14px; }
-    .badge.leaf { color: var(--leaf-deep); }
-    .badge.mango { background: var(--mango); color: #2b1a03; }
-    .g-count { position: absolute; top: 12px; right: 12px; z-index: 2; font-size: .75rem; font-weight: 700; color: #fff; background: rgba(20,24,21,.55); padding: 5px 10px; border-radius: 999px; backdrop-filter: blur(4px); display: inline-flex; align-items: center; gap: 5px; }
+    .badge.leaf svg { color: var(--leaf); }
+    .badge.mango svg { color: var(--mango-deep); }
+    .g-count {
+      position: absolute; top: 14px; right: 14px; z-index: 2; display: inline-flex; align-items: center; gap: 6px;
+      font-size: .74rem; font-weight: 700; color: #fff; background: rgba(15,20,17,.55); padding: 6px 10px; border-radius: 999px;
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); font-variant-numeric: tabular-nums;
+    }
     .g-count svg { width: 13px; height: 13px; }
     .g-btn {
       position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
       width: 38px; height: 38px; border-radius: 50%; border: 0; cursor: pointer;
-      background: rgba(255,255,255,.95); color: var(--ink); display: grid; place-items: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,.14); opacity: 0; transition: opacity .2s ease;
+      background: rgba(255,255,255,.96); color: var(--ink); display: grid; place-items: center;
+      box-shadow: 0 4px 14px rgba(0,0,0,.15); opacity: 0; transition: opacity .2s ease, transform .15s ease;
     }
+    .g-btn:hover { transform: translateY(-50%) scale(1.05); }
     .g-btn svg { width: 18px; height: 18px; }
-    .g-btn.prev { left: 12px; } .g-btn.next { right: 12px; }
+    .g-btn.prev { left: 14px; } .g-btn.next { right: 14px; }
     .gallery:hover .g-btn, .g-btn:focus-visible { opacity: 1; }
-    @media (hover: none) { .g-btn { opacity: .92; width: 34px; height: 34px; } }
-    .g-dots { position: absolute; left: 0; right: 0; bottom: 12px; display: flex; justify-content: center; gap: 6px; z-index: 2; }
-    .g-dots button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 999px; background: rgba(255,255,255,.6); cursor: pointer; transition: width .2s ease, background .2s ease; }
+    @media (hover: none) { .g-btn { opacity: .94; width: 34px; height: 34px; } }
+    .g-dots { position: absolute; left: 0; right: 0; bottom: 14px; display: flex; justify-content: center; gap: 6px; z-index: 2; }
+    .g-dots button { width: 7px; height: 7px; padding: 0; border: 0; border-radius: 999px; background: rgba(255,255,255,.55); cursor: pointer; transition: width .2s ease, background .2s ease; }
     .g-dots button[aria-current="true"] { width: 20px; background: #fff; }
 
-    .room-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
-    .price-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-    .price { font-size: 2rem; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
-    .price small { font-size: .95rem; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-left: 2px; }
-    .ready { font-size: .8rem; font-weight: 700; color: var(--leaf-deep); background: var(--leaf-soft); padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
-    .ready.new { color: #8a4d00; background: var(--mango-soft); }
-    .room h3 { font-size: 1.15rem; font-weight: 700; }
-    .loc { display: flex; align-items: center; gap: 6px; color: var(--ink-2); font-size: .92rem; margin-top: 4px; }
-    .loc svg { width: 16px; height: 16px; color: var(--mango-deep); flex-shrink: 0; }
-    .specs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; list-style: none; margin: 0; padding: 0; }
-    .specs li { background: var(--bg); border-radius: var(--r-sm); padding: 10px 6px; text-align: center; }
-    .specs svg { width: 20px; height: 20px; color: var(--leaf); margin: 0 auto 4px; display: block; }
-    .specs b { display: block; font-size: .92rem; font-weight: 700; line-height: 1.2; }
-    .specs span { display: block; font-size: .72rem; color: var(--muted); }
-    .room-actions { display: flex; gap: 10px; margin-top: auto; }
-    .room-actions .btn-wa { flex: 1; }
+    .room-body { padding: 22px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+    .room-loc { display: flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 700; letter-spacing: .02em; color: var(--ink-2); }
+    .room-loc svg { width: 15px; height: 15px; color: var(--mango-deep); flex-shrink: 0; }
+    .room-loc .code-chip { font-size: .64rem; font-weight: 800; letter-spacing: .04em; padding: 2px 6px; border-radius: 5px; border: 1.5px solid currentColor; line-height: 1.2; }
+    .room-loc .code-chip.bts { color: var(--bts); }
+    .room-loc .code-chip.mrt { color: var(--mrt); }
+    .room h3 { font-size: 1.22rem; font-weight: 800; margin-top: 8px; }
+    .room-desc { color: var(--ink-2); font-size: .94rem; margin-top: 8px; }
 
-    .empty { background: var(--card); border-radius: var(--r-lg); box-shadow: var(--shadow); padding: 32px 22px; text-align: center; }
-    .empty .icon { width: 56px; height: 56px; border-radius: 18px; background: var(--mango-soft); display: grid; place-items: center; margin: 0 auto 14px; }
-    .empty .icon svg { width: 28px; height: 28px; color: var(--mango-deep); }
-    .empty h3 { font-size: 1.15rem; margin-bottom: 6px; }
-    .empty p { color: var(--ink-2); margin: 0 0 6px; }
-    .empty .btn { margin-top: 12px; }
-    .more-note { text-align: center; color: var(--muted); font-size: .92rem; margin: 22px 0 0; }
-    .more-note a { color: var(--leaf-deep); font-weight: 700; }
+    .price-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-top: 18px; padding: 16px 0; border-top: 1px solid var(--hair-2); border-bottom: 1px solid var(--hair-2);
+    }
+    .price { white-space: nowrap; font-size: 2.1rem; font-weight: 800; letter-spacing: -.035em; line-height: 1; font-variant-numeric: tabular-nums; }
+    .price small { display: inline-block; font-size: .9rem; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-left: 4px; }
+    .price-note { font-size: .78rem; color: var(--muted); margin-top: 6px; }
+    .status { font-size: .78rem; font-weight: 700; padding: 6px 11px; border-radius: 999px; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+    .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+    .status.ready { color: var(--leaf-deep); background: var(--leaf-soft); }
+    .status.new { color: var(--mango-deep); background: var(--mango-soft); }
 
-    /* ---------- About ---------- */
-    .about { background: var(--card); border-radius: var(--r-lg); box-shadow: var(--shadow); padding: 24px 20px; display: grid; gap: 20px; }
+    .specs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 16px 0 0; }
+    .specs div { background: var(--bg); border-radius: var(--r-sm); padding: 12px 6px 11px; text-align: center; }
+    .specs dt { font-size: .7rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .specs dd { margin: 3px 0 0; font-size: 1rem; font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; }
+    .specs dd small { font-size: .74rem; font-weight: 600; color: var(--ink-2); margin-left: 1px; }
+
+    .amenities-title { font-size: .76rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-top: 20px; }
+    .amenities { list-style: none; margin: 10px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 9px 14px; }
+    .amenities li { display: flex; align-items: center; gap: 9px; font-size: .9rem; color: var(--ink); font-weight: 500; }
+    .amenities svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--leaf); background: var(--leaf-soft); border-radius: 6px; padding: 3px; }
+
+    .room-cta { margin-top: 22px; padding-top: 4px; display: grid; gap: 10px; }
+    .room-cta .btn-wa { min-height: 56px; font-size: 1.02rem; box-shadow: 0 8px 20px rgba(37,211,102,.28); }
+    .room-cta .btn-wa .arrow { width: 18px; height: 18px; margin-left: 2px; transition: transform .2s ease; }
+    .room-cta .btn-wa:hover .arrow { transform: translateX(3px); }
+    .room-cta-sub { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .room-cta-sub .btn { min-height: 44px; padding: 0 16px; font-size: .9rem; }
+    .room-cta-sub p { font-size: .8rem; color: var(--muted); text-align: right; }
+
+    .empty { background: var(--card); border-radius: var(--r-xl); border: 1px solid var(--hair-2); box-shadow: var(--shadow); padding: 36px 24px; text-align: center; }
+    .empty .icon { width: 54px; height: 54px; border-radius: 16px; background: var(--mango-soft); display: grid; place-items: center; margin: 0 auto 16px; }
+    .empty .icon svg { width: 26px; height: 26px; color: var(--mango-deep); }
+    .empty h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 8px; }
+    .empty p { color: var(--ink-2); max-width: 460px; margin: 0 auto 4px; }
+    .empty .btn { margin-top: 16px; }
+    .more-note { text-align: center; color: var(--muted); font-size: .92rem; margin-top: 26px; }
+    .more-note a { color: var(--leaf-deep); font-weight: 700; text-underline-offset: 3px; }
+
+    /* =========================================================
+       About
+       ========================================================= */
+    .about { background: var(--card); border-radius: var(--r-xl); border: 1px solid var(--hair-2); box-shadow: var(--shadow); padding: 26px 20px; display: grid; gap: 24px; }
     .about-head { display: flex; align-items: center; gap: 14px; }
     .avatar {
-      width: 64px; height: 64px; border-radius: 22px; flex-shrink: 0;
-      background: linear-gradient(140deg, var(--leaf-soft), #cfe7d6); color: var(--leaf-deep);
+      width: 64px; height: 64px; border-radius: 20px; flex-shrink: 0;
+      background: linear-gradient(145deg, var(--leaf-soft), #cfe6d7); color: var(--leaf-deep);
       display: grid; place-items: center; font-size: 1.6rem; font-weight: 800;
     }
-    .about-head h2 { font-size: 1.35rem; font-weight: 800; }
-    .about-head p { margin: 2px 0 0; color: var(--muted); font-size: .9rem; }
-    .about-text p { margin: 0; color: var(--ink-2); }
-    .about-thai { margin-top: 12px !important; background: var(--bg); border-radius: var(--r-md); padding: 14px 16px; color: var(--ink) !important; }
+    .about-head h2 { font-size: 1.45rem; font-weight: 800; margin-top: 6px; }
+    .about-head .role { color: var(--muted); font-size: .9rem; margin-top: 2px; }
+    .about-text > p { color: var(--ink-2); margin-top: 18px; }
+    .about-thai { margin-top: 14px; background: var(--bg); border-radius: var(--r-md); padding: 14px 16px; color: var(--ink); border-left: 3px solid var(--mango); }
     .points { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-    .points li { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border-radius: var(--r-md); border: 1px solid var(--hair); }
+    .points li { display: flex; gap: 14px; align-items: flex-start; padding: 14px; border-radius: var(--r-md); border: 1px solid var(--hair); }
     .points .ic { width: 40px; height: 40px; border-radius: 12px; background: var(--mango-soft); display: grid; place-items: center; flex-shrink: 0; }
     .points .ic svg { width: 20px; height: 20px; color: var(--mango-deep); }
     .points strong { display: block; font-size: .98rem; }
     .points span { display: block; color: var(--ink-2); font-size: .9rem; }
-    .points .th { color: var(--muted); font-size: .85rem; }
+    .points .th { color: var(--muted); font-size: .84rem; margin-top: 2px; }
 
-    /* ---------- Steps ---------- */
-    .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-    .steps li { background: var(--card); border-radius: var(--r-md); box-shadow: var(--shadow); padding: 16px; display: flex; gap: 14px; align-items: flex-start; }
-    .steps .n { width: 36px; height: 36px; border-radius: 12px; background: var(--ink); color: #fff; display: grid; place-items: center; font-weight: 800; flex-shrink: 0; }
-    .steps h3 { font-size: 1rem; font-weight: 700; margin-bottom: 2px; }
-    .steps p { margin: 0; color: var(--ink-2); font-size: .92rem; }
+    /* =========================================================
+       How it works
+       ========================================================= */
+    .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: step; }
+    .steps li { background: var(--card); border-radius: var(--r-lg); border: 1px solid var(--hair-2); box-shadow: var(--shadow-sm); padding: 18px; display: flex; gap: 14px; align-items: flex-start; }
+    .steps .n { width: 36px; height: 36px; border-radius: 11px; background: var(--ink); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: .95rem; flex-shrink: 0; }
+    .steps h3 { font-size: 1rem; font-weight: 700; letter-spacing: -.01em; }
+    .steps p { color: var(--ink-2); font-size: .92rem; margin-top: 3px; }
 
-    /* ---------- Contact ---------- */
-    .contact { background: var(--ink); color: #fff; border-radius: var(--r-lg); padding: 28px 20px; text-align: center; position: relative; overflow: hidden; }
-    .contact::before { content: ""; position: absolute; width: 220px; height: 220px; border-radius: 50%; background: rgba(245,158,43,.22); top: -110px; right: -70px; }
-    .contact::after { content: ""; position: absolute; width: 160px; height: 160px; border-radius: 50%; background: rgba(63,143,90,.3); bottom: -90px; left: -50px; }
+    /* =========================================================
+       Contact
+       ========================================================= */
+    .contact { background: var(--ink); color: #fff; border-radius: var(--r-xl); padding: 34px 22px; text-align: center; position: relative; overflow: hidden; }
+    .contact::before { content: ""; position: absolute; width: 260px; height: 260px; border-radius: 50%; background: rgba(242,154,46,.16); top: -130px; right: -80px; }
+    .contact::after { content: ""; position: absolute; width: 200px; height: 200px; border-radius: 50%; background: rgba(47,125,79,.28); bottom: -110px; left: -60px; }
     .contact > * { position: relative; }
-    .contact .kicker { color: #ffc56b; }
-    .contact h2 { font-size: 1.6rem; font-weight: 800; }
-    .contact p { color: rgba(255,255,255,.78); margin: 10px auto 22px; max-width: 460px; }
+    .contact .eyebrow { color: #ffc66e; }
+    .contact h2 { font-size: clamp(1.6rem, 4.4vw, 2.1rem); font-weight: 800; margin-top: 10px; }
+    .contact .lead { color: rgba(255,255,255,.78); margin: 12px auto 24px; max-width: 480px; }
     .contact-actions { display: grid; gap: 12px; max-width: 520px; margin: 0 auto; }
-    .contact-actions .btn { min-height: 58px; font-size: 1.05rem; }
-    .contact .hours { font-size: .85rem; color: rgba(255,255,255,.6); margin: 18px auto 0; }
+    .contact-actions .btn { min-height: 58px; font-size: 1.04rem; }
+    .contact .hours { font-size: .84rem; color: rgba(255,255,255,.6); margin: 18px auto 0; }
 
-    /* ---------- Footer ---------- */
-    footer { padding: 28px 0 36px; color: var(--muted); font-size: .88rem; }
-    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid var(--hair); padding-top: 22px; }
+    /* =========================================================
+       Footer & mobile contact bar
+       ========================================================= */
+    footer { padding: 28px 0 40px; color: var(--muted); font-size: .88rem; }
+    .foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; border-top: 1px solid var(--hair); padding-top: 24px; }
     .foot strong { color: var(--ink); }
-    .foot nav { display: flex; gap: 16px; flex-wrap: wrap; }
+    .foot nav { display: flex; gap: 18px; flex-wrap: wrap; }
     .foot a { text-decoration: none; }
     .foot a:hover { color: var(--ink); }
 
-    /* ---------- Mobile bottom bar ---------- */
     .bottom-bar {
       position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
       display: flex; gap: 10px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
-      background: rgba(255,255,255,.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border-top: 1px solid var(--hair); box-shadow: 0 -6px 20px rgba(31,36,32,.06);
+      background: rgba(255,255,255,.95); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid var(--hair); box-shadow: 0 -8px 24px rgba(23,32,27,.06);
     }
-    .bottom-bar .btn { flex: 1; min-height: 50px; box-shadow: none; }
+    .bottom-bar .btn { flex: 1; min-height: 50px; }
 
-    /* ---------- Responsive ---------- */
+    /* =========================================================
+       Responsive
+       ========================================================= */
     .appbar nav a.link, .appbar .btn-label { display: none; }
     body { padding-bottom: 84px; }
     @media (min-width: 560px) {
@@ -302,28 +393,30 @@
       .contact-actions { grid-template-columns: 1fr 1fr; }
     }
     @media (min-width: 760px) {
-      section { padding: 56px 0; }
-      .room-grid { grid-template-columns: 1fr 1fr; }
-      .finder { padding: 24px 24px 18px; }
-      .map-scroll { margin: 6px -24px 0; padding: 0 24px; }
+      section { padding: 64px 0; }
+      .hero { padding: 48px 0 16px; }
+      .finder { padding: 26px 28px 20px; }
+      .map-scroll { margin: 14px -28px 0; padding: 0 28px; }
       .legend .hint { display: none; }
-      .chips { flex-wrap: wrap; overflow: visible; margin: 0; padding: 0; }
+      .room-grid { grid-template-columns: 1fr 1fr; }
+      .room-body { padding: 24px 24px 22px; }
       .steps { grid-template-columns: repeat(3, 1fr); }
-      .steps li { flex-direction: column; }
-      .about { grid-template-columns: 1.1fr 1fr; padding: 32px; gap: 32px; align-items: start; }
-      .contact { padding: 44px 32px; }
-      .contact h2 { font-size: 2rem; }
+      .steps li { flex-direction: column; padding: 22px; }
+      .about { grid-template-columns: 1.1fr 1fr; padding: 36px; gap: 36px; align-items: start; }
+      .contact { padding: 52px 36px; }
       .bottom-bar { display: none; }
       body { padding-bottom: 0; }
     }
-    @media (min-width: 900px) {
+    @media (min-width: 920px) {
       .appbar nav a.link { display: inline-block; }
-      .hero { padding-top: 44px; }
+    }
+    @media (max-width: 380px) {
+      .specs dt { font-size: .62rem; letter-spacing: .03em; }
+      .amenities { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
       html, .gallery-track { scroll-behavior: auto; }
-      .train, .train .car, .stop-dot::after { animation: none !important; }
-      * { transition: none !important; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
@@ -334,13 +427,14 @@
     <div class="wrap appbar-inner">
       <a href="#top" class="brand" aria-label="TeaLeafAndMangoSticky home">
         <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#2e6f45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l7-7"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#23603c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19l7-7"/></svg>
         </span>
         <span class="brand-name">TeaLeaf<em>And</em>MangoSticky</span>
       </a>
       <nav aria-label="Main">
         <a class="link" href="#rooms">Rooms</a>
         <a class="link" href="#about">About</a>
+        <a class="link" href="#how">How it works</a>
         <a class="link" href="#contact">Contact</a>
         <a class="btn btn-line" href="https://line.me/ti/p/~your-line-id" target="_blank" rel="noopener" aria-label="Chat on LINE">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>
@@ -352,96 +446,94 @@
 
   <main id="top">
 
-    <!-- ===== Hero + search ===== -->
+    <!-- ===== Hero + station finder ===== -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="wrap">
-        <div class="hello">
-          <span class="avatar-sm" aria-hidden="true">F</span>
-          Hi, I'm Fon <span class="dot" aria-hidden="true"></span> replies fast
-        </div>
-        <h1 id="hero-title">Easy rooms in Bangkok, <span>at honest prices.</span></h1>
-        <p class="hero-lead">Clean rooms and condos near the BTS &amp; MRT. Tell me what you need — I'll find something that fits.</p>
+        <span class="eyebrow">Room rental agent · Bangkok</span>
+        <h1 id="hero-title">Affordable rooms near BTS &amp; MRT, <span>with honest help.</span></h1>
+        <p class="hero-lead">Clear prices, real photos and personal support from search to move-in — in Thai or English.</p>
         <p class="hero-thai" lang="th">หาห้องเช่าแบบง่ายๆ ราคาชัดเจน ไม่มีค่าใช้จ่ายแอบแฝง ทักมาคุยกันได้เลยค่ะ ทั้งภาษาไทยและอังกฤษ 😊</p>
+        <div class="hero-agent">
+          <span class="avatar-sm" aria-hidden="true">F</span>
+          <span><strong>Fon</strong> · your room finder</span>
+          <span class="online" aria-hidden="true"></span>
+          <span>Replies quickly</span>
+        </div>
 
-        <div class="finder" role="search" aria-label="Find a room by station and budget">
+        <div class="finder" role="search" aria-labelledby="finder-title">
           <div class="finder-head">
             <div>
-              <h2>Pick your station <span class="tag">SKYTRAIN</span></h2>
-              <p lang="th">อยากอยู่ใกล้สถานีไหนคะ? กดเลือกได้เลย</p>
+              <h2 id="finder-title">Search by station</h2>
+              <p class="sub">Find rooms by BTS / MRT station</p>
+              <p class="sub-th" lang="th">ค้นหาห้องตามสถานี BTS / MRT</p>
             </div>
-            <span class="results-count" id="results-count" aria-live="polite"></span>
+            <span class="results" id="results-count" aria-live="polite"></span>
           </div>
 
           <div class="map-scroll" id="map-scroll">
             <div class="map" id="map">
-              <div class="map-line" id="map-line" aria-hidden="true"></div>
+              <div class="track" id="track" aria-hidden="true"></div>
+              <div class="track-fill" id="track-fill" aria-hidden="true"></div>
               <div class="train" id="train" aria-hidden="true">
-                <span class="speed"></span>
-                <svg viewBox="0 0 88 30">
-                  <g class="car">
-                    <path d="M4 4h66c8 0 14 5 15 12v4c0 2-1.5 3.5-3.5 3.5H4c-1.7 0-3-1.3-3-3V7c0-1.7 1.3-3 3-3z" fill="#fff" stroke="#cdd4cb" stroke-width="1.2"/>
-                    <path d="M8 7.5h56v7H8z" fill="#22413a"/>
-                    <path d="M71 7.5c5 .5 9 3.5 10.5 7H71z" fill="#22413a"/>
-                    <path d="M22 7.5v7M36 7.5v7M50 7.5v7" stroke="#fff" stroke-width="1.6"/>
-                    <path d="M1 16.5h83.5" stroke="#6cb33f" stroke-width="3.2"/>
-                    <path d="M1 19.6h83" stroke="#2f63a8" stroke-width="1.2"/>
-                    <path d="M15 7v15M43 7v15M64 7v15" stroke="#cdd4cb" stroke-width=".9"/>
-                    <circle cx="82" cy="21.2" r="1.2" fill="#f59e2b"/>
-                  </g>
-                  <rect x="8" y="24" width="16" height="4" rx="2" fill="#4b524c"/>
-                  <rect x="56" y="24" width="16" height="4" rx="2" fill="#4b524c"/>
+                <svg viewBox="0 0 52 22">
+                  <path d="M3 2h37c6 0 10.5 4 11 9.5v4.5c0 1.6-1.3 3-3 3H3c-1.4 0-2.5-1.1-2.5-2.5v-12C.5 3.1 1.6 2 3 2z" fill="#fff" stroke="#c9d1c6" stroke-width="1"/>
+                  <path d="M5 5.5h31v5H5z" fill="#1f2e27"/>
+                  <path d="M41 5.5c3.6.4 6.4 2.4 7.6 5H41z" fill="#1f2e27"/>
+                  <path d="M15.5 5.5v5M26 5.5v5" stroke="#fff" stroke-width="1.3"/>
+                  <path d="M.8 13.4h50.4" stroke="#4c9a2a" stroke-width="2.4"/>
+                  <path d="M.8 15.8h50.2" stroke="#2b5ea7" stroke-width=".9"/>
                 </svg>
               </div>
               <ol class="stops">
-                  <li><button type="button" class="stop all" data-station="any" aria-pressed="true">
-                    <span class="stop-dot" aria-hidden="true"></span>
-                    <span class="code" aria-hidden="true">ALL</span>
-                    <span class="stop-name">All stops</span>
-                    <span class="stop-th" lang="th">ทุกสถานี</span>
-                    <span class="stop-count"></span>
-                  </button></li>
-                  <li><button type="button" class="stop mrt" data-station="bangkhae" aria-pressed="false">
-                    <span class="stop-dot" aria-hidden="true"></span>
-                    <span class="code" aria-hidden="true">MRT</span>
-                    <span class="stop-name">Bangkhae</span>
-                    <span class="stop-th" lang="th">บางแค</span>
-                    <span class="stop-count"></span>
-                  </button></li>
-                  <li><button type="button" class="stop mrt" data-station="lat-phrao" aria-pressed="false">
-                    <span class="stop-dot" aria-hidden="true"></span>
-                    <span class="code" aria-hidden="true">MRT</span>
-                    <span class="stop-name">Lat Phrao</span>
-                    <span class="stop-th" lang="th">ลาดพร้าว</span>
-                    <span class="stop-count"></span>
-                  </button></li>
-                  <li><button type="button" class="stop bts" data-station="phaya-thai" aria-pressed="false">
-                    <span class="stop-dot" aria-hidden="true"></span>
-                    <span class="code" aria-hidden="true">N2</span>
-                    <span class="stop-name">Phaya Thai</span>
-                    <span class="stop-th" lang="th">พญาไท</span>
-                    <span class="stop-count"></span>
-                  </button></li>
-                  <li><button type="button" class="stop bts" data-station="siam" aria-pressed="false">
-                    <span class="stop-dot" aria-hidden="true"></span>
-                    <span class="code" aria-hidden="true">CEN</span>
-                    <span class="stop-name">Siam</span>
-                    <span class="stop-th" lang="th">สยาม</span>
-                    <span class="stop-count"></span>
-                  </button></li>
-                  <li><button type="button" class="stop bts" data-station="asok" aria-pressed="false">
-                    <span class="stop-dot" aria-hidden="true"></span>
-                    <span class="code" aria-hidden="true">E4</span>
-                    <span class="stop-name">Asok</span>
-                    <span class="stop-th" lang="th">อโศก</span>
-                    <span class="stop-count"></span>
-                  </button></li>
-                  <li><button type="button" class="stop bts" data-station="sai-luat" aria-pressed="false">
-                    <span class="stop-dot" aria-hidden="true"></span>
-                    <span class="code" aria-hidden="true">E22</span>
-                    <span class="stop-name">Sai Luat</span>
-                    <span class="stop-th" lang="th">สายลวด</span>
-                    <span class="stop-count"></span>
-                  </button></li>
+                <li><button type="button" class="stop all" data-station="any" aria-pressed="true">
+                  <span class="stop-dot" aria-hidden="true"></span>
+                  <span class="code" aria-hidden="true">ALL</span>
+                  <span class="stop-name">All stations</span>
+                  <span class="stop-th" lang="th">ทุกสถานี</span>
+                  <span class="stop-count"></span>
+                </button></li>
+                <li><button type="button" class="stop mrt" data-station="bangkhae" aria-pressed="false">
+                  <span class="stop-dot" aria-hidden="true"></span>
+                  <span class="code" aria-hidden="true">MRT</span>
+                  <span class="stop-name">Bang Khae</span>
+                  <span class="stop-th" lang="th">บางแค</span>
+                  <span class="stop-count"></span>
+                </button></li>
+                <li><button type="button" class="stop mrt" data-station="lat-phrao" aria-pressed="false">
+                  <span class="stop-dot" aria-hidden="true"></span>
+                  <span class="code" aria-hidden="true">MRT</span>
+                  <span class="stop-name">Lat Phrao</span>
+                  <span class="stop-th" lang="th">ลาดพร้าว</span>
+                  <span class="stop-count"></span>
+                </button></li>
+                <li><button type="button" class="stop bts" data-station="phaya-thai" aria-pressed="false">
+                  <span class="stop-dot" aria-hidden="true"></span>
+                  <span class="code" aria-hidden="true">N2</span>
+                  <span class="stop-name">Phaya Thai</span>
+                  <span class="stop-th" lang="th">พญาไท</span>
+                  <span class="stop-count"></span>
+                </button></li>
+                <li><button type="button" class="stop bts" data-station="siam" aria-pressed="false">
+                  <span class="stop-dot" aria-hidden="true"></span>
+                  <span class="code" aria-hidden="true">CEN</span>
+                  <span class="stop-name">Siam</span>
+                  <span class="stop-th" lang="th">สยาม</span>
+                  <span class="stop-count"></span>
+                </button></li>
+                <li><button type="button" class="stop bts" data-station="asok" aria-pressed="false">
+                  <span class="stop-dot" aria-hidden="true"></span>
+                  <span class="code" aria-hidden="true">E4</span>
+                  <span class="stop-name">Asok</span>
+                  <span class="stop-th" lang="th">อโศก</span>
+                  <span class="stop-count"></span>
+                </button></li>
+                <li><button type="button" class="stop bts" data-station="sai-luat" aria-pressed="false">
+                  <span class="stop-dot" aria-hidden="true"></span>
+                  <span class="code" aria-hidden="true">E22</span>
+                  <span class="stop-name">Sai Luat</span>
+                  <span class="stop-th" lang="th">สายลวด</span>
+                  <span class="stop-count"></span>
+                </button></li>
               </ol>
             </div>
           </div>
@@ -449,43 +541,44 @@
           <div class="finder-foot">
             <div class="budget">
               <span class="label" id="budget-label">Monthly budget <span lang="th">งบต่อเดือน</span></span>
-              <div class="chips" role="group" aria-labelledby="budget-label">
-                <button type="button" class="chip" data-filter="budget" data-value="any" aria-pressed="true">Any price</button>
-                <button type="button" class="chip" data-filter="budget" data-value="0-14999" aria-pressed="false">Under ฿15,000</button>
-                <button type="button" class="chip" data-filter="budget" data-value="15000-20000" aria-pressed="false">฿15,000–20,000</button>
+              <div class="segmented" role="group" aria-labelledby="budget-label">
+                <button type="button" class="seg" data-budget="any" aria-pressed="true">Any</button>
+                <button type="button" class="seg" data-budget="0-14999" aria-pressed="false">Under ฿15,000</button>
+                <button type="button" class="seg" data-budget="15000-20000" aria-pressed="false">฿15,000–20,000</button>
               </div>
             </div>
             <div class="legend" aria-hidden="true">
-              <span><b style="background:#2f6b3a"></b>BTS</span>
-              <span><b style="background:#2f63a8"></b>MRT</span>
-              <span class="hint">· swipe map →</span>
+              <span><i style="border-color:#4c9a2a"></i>BTS</span>
+              <span><i style="border-color:#2b5ea7"></i>MRT</span>
+              <span class="hint">Swipe to see all stations →</span>
             </div>
           </div>
         </div>
 
         <div class="trust">
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>No hidden fees</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Real photos</span>
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Thai &amp; English</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Real photos of every unit</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Thai &amp; English support</span>
         </div>
       </div>
     </section>
 
     <!-- ===== Rooms ===== -->
-    <section id="rooms" aria-labelledby="rooms-title">
+    <section id="rooms" aria-labelledby="rooms-title" style="padding-top:24px">
       <div class="wrap">
-        <div class="section-title">
+        <div class="section-head">
           <div>
+            <span class="eyebrow">Available now</span>
             <h2 id="rooms-title">Available rooms</h2>
-            <p class="sub">Prices are per month. Ask me about deposit &amp; contract.</p>
+            <p class="sub">All prices are per month. Deposit and contract details are available on request.</p>
           </div>
         </div>
 
         <div class="room-grid">
 
-          <!-- Room 1 -->
-          <article class="room" data-price="18000" data-location="sai-luat">
-            <div class="gallery" aria-roledescription="carousel" aria-label="Origin Plug &amp; Play E22 Station photos">
+          <!-- ============ Room 1 ============ -->
+          <article class="room" data-price="18000" data-location="sai-luat" aria-labelledby="room1-title">
+            <div class="gallery" aria-roledescription="carousel" aria-label="Origin Plug &amp; Play E22 Station photos" tabindex="0">
               <div class="gallery-track">
                 <img src="images/room1-1.jpeg" alt="Origin Plug &amp; Play E22 Station: photo 1" width="800" height="600" />
                 <img src="images/room1-2.jpeg" alt="Origin Plug &amp; Play E22 Station: photo 2" loading="lazy" width="800" height="600" />
@@ -500,35 +593,56 @@
               </div>
             </div>
             <div class="room-body">
+              <p class="room-loc">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                BTS Sai Luat <span class="code-chip bts">E22</span>
+              </p>
+              <h3 id="room1-title">Origin Plug &amp; Play E22 Station</h3>
+              <p class="room-desc">A one-bedroom unit on the 11th floor, close to BTS Sai Luat. Pets are welcome and the room is ready for immediate move-in.</p>
+
               <div class="price-row">
-                <p class="price" style="margin:0">฿18,000<small>/month</small></p>
-                <span class="ready">Ready to move in</span>
+                <div>
+                  <p class="price">฿18,000<small>/ month</small></p>
+                </div>
+                <span class="status ready">Ready to move in</span>
               </div>
-              <div>
-                <h3>Origin Plug &amp; Play E22 Station</h3>
-                <p class="loc" style="margin-bottom:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>BTS Sai Luat</p>
-              </div>
-              <ul class="specs" aria-label="Room details">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6M3 18h18M3 18v2M21 18v2M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/></svg><b>1</b><span>Bed</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM6 12V6a2 2 0 0 1 3.5-1.3M7 20l-1 2M17 20l1 2"/></svg><b>1</b><span>Bath</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h4M15 20v-4M20 15h-4"/></svg><b>24</b><span>sqm</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M3 21h18M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg><b>11</b><span>Floor</span></li>
+
+              <dl class="specs">
+                <div><dt>Size</dt><dd>24<small>m²</small></dd></div>
+                <div><dt>Floor</dt><dd>11</dd></div>
+                <div><dt>Bedroom</dt><dd>1</dd></div>
+                <div><dt>Bathroom</dt><dd>1</dd></div>
+              </dl>
+
+              <p class="amenities-title">Highlights</p>
+              <!-- Add more confirmed features here, e.g. <li>…Fully furnished</li>, <li>…Swimming pool</li> -->
+              <ul class="amenities">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Pet-friendly</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Ready to move in</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Near BTS Sai Luat</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Viewing by appointment</li>
               </ul>
-              <div class="room-actions">
-                <a class="btn btn-wa" href="https://wa.me/66xxxxxxxxx?text=Hi%20Fon%2C%20I'm%20interested%20in%20Origin%20Plug%20%26%20Play%20E22%20Station%20(BTS%20Sai%20Luat%2C%20Floor%2011%2C%20%E0%B8%BF18%2C000)" target="_blank" rel="noopener">
+
+              <div class="room-cta">
+                <a class="btn btn-wa" href="https://wa.me/66xxxxxxxxx?text=Hi%20Fon%2C%20I'm%20interested%20in%20Origin%20Plug%20%26%20Play%20E22%20Station%20(BTS%20Sai%20Luat%2C%20Floor%2011%2C%20%E0%B8%BF18%2C000%2Fmonth).%20Is%20it%20still%20available%3F" target="_blank" rel="noopener">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.3 7.9L3 21l1.2-4.5A9 9 0 1 1 21 12z"/></svg>
                   Chat about this room
+                  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </a>
-                <a class="btn btn-line btn-icon" href="https://line.me/ti/p/~your-line-id" target="_blank" rel="noopener" aria-label="Ask about Origin Plug &amp; Play E22 Station on LINE">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>
-                </a>
+                <div class="room-cta-sub">
+                  <a class="btn btn-outline" href="https://line.me/ti/p/~your-line-id" target="_blank" rel="noopener">
+                    <svg class="line-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>
+                    Ask on LINE
+                  </a>
+                  <p>Viewings arranged<br />at your convenience</p>
+                </div>
               </div>
             </div>
           </article>
 
-          <!-- Room 2 -->
-          <article class="room" data-price="13000" data-location="bangkhae">
-            <div class="gallery" aria-roledescription="carousel" aria-label="The Muve Paw Bangkhae photos">
+          <!-- ============ Room 2 ============ -->
+          <article class="room" data-price="13000" data-location="bangkhae" aria-labelledby="room2-title">
+            <div class="gallery" aria-roledescription="carousel" aria-label="The Muve Paw Bangkhae photos" tabindex="0">
               <div class="gallery-track">
                 <img src="images/room2-1.jpeg" alt="The Muve Paw Bangkhae: photo 1" width="800" height="600" />
                 <img src="images/room2-2.jpeg" alt="The Muve Paw Bangkhae: photo 2" loading="lazy" width="800" height="600" />
@@ -543,28 +657,49 @@
               </div>
             </div>
             <div class="room-body">
+              <p class="room-loc">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                Bang Khae <span class="code-chip mrt">MRT</span>
+              </p>
+              <h3 id="room2-title">The Muve Paw Bangkhae</h3>
+              <p class="room-desc">A newly finished one-bedroom unit on the 5th floor in the Bang Khae area — a clean, fresh space at a budget-friendly price.</p>
+
               <div class="price-row">
-                <p class="price" style="margin:0">฿13,000<small>/month</small></p>
-                <span class="ready new">Brand new</span>
+                <div>
+                  <p class="price">฿13,000<small>/ month</small></p>
+                </div>
+                <span class="status new">New room</span>
               </div>
-              <div>
-                <h3>The Muve Paw Bangkhae</h3>
-                <p class="loc" style="margin-bottom:0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>Bangkhae</p>
-              </div>
-              <ul class="specs" aria-label="Room details">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v6M3 18h18M3 18v2M21 18v2M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/></svg><b>1</b><span>Bed</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM6 12V6a2 2 0 0 1 3.5-1.3M7 20l-1 2M17 20l1 2"/></svg><b>1</b><span>Bath</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h4M15 20v-4M20 15h-4"/></svg><b>24.51</b><span>sqm</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M3 21h18M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/></svg><b>5</b><span>Floor</span></li>
+
+              <dl class="specs">
+                <div><dt>Size</dt><dd>24.51<small>m²</small></dd></div>
+                <div><dt>Floor</dt><dd>5</dd></div>
+                <div><dt>Bedroom</dt><dd>1</dd></div>
+                <div><dt>Bathroom</dt><dd>1</dd></div>
+              </dl>
+
+              <p class="amenities-title">Highlights</p>
+              <!-- Add more confirmed features here, e.g. <li>…Fully furnished</li>, <li>…Swimming pool</li> -->
+              <ul class="amenities">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Brand-new unit</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Budget-friendly</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Bang Khae area</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Viewing by appointment</li>
               </ul>
-              <div class="room-actions">
-                <a class="btn btn-wa" href="https://wa.me/66xxxxxxxxx?text=Hi%20Fon%2C%20I'm%20interested%20in%20The%20Muve%20Paw%20Bangkhae%20(Floor%205%2C%20%E0%B8%BF13%2C000)" target="_blank" rel="noopener">
+
+              <div class="room-cta">
+                <a class="btn btn-wa" href="https://wa.me/66xxxxxxxxx?text=Hi%20Fon%2C%20I'm%20interested%20in%20The%20Muve%20Paw%20Bangkhae%20(Floor%205%2C%20%E0%B8%BF13%2C000%2Fmonth).%20Is%20it%20still%20available%3F" target="_blank" rel="noopener">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.3 7.9L3 21l1.2-4.5A9 9 0 1 1 21 12z"/></svg>
                   Chat about this room
+                  <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                 </a>
-                <a class="btn btn-line btn-icon" href="https://line.me/ti/p/~your-line-id" target="_blank" rel="noopener" aria-label="Ask about The Muve Paw Bangkhae on LINE">
-                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>
-                </a>
+                <div class="room-cta-sub">
+                  <a class="btn btn-outline" href="https://line.me/ti/p/~your-line-id" target="_blank" rel="noopener">
+                    <svg class="line-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>
+                    Ask on LINE
+                  </a>
+                  <p>Viewings arranged<br />at your convenience</p>
+                </div>
               </div>
             </div>
           </article>
@@ -573,43 +708,44 @@
 
         <div class="empty" id="room-empty" hidden>
           <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
-          <h3>No listed rooms match yet</h3>
-          <p>I often have rooms that aren't online — tell me your budget and area and I'll check for you.</p>
+          <h3>No listed rooms match this search</h3>
+          <p>Not every available room is listed online. Share your budget and preferred area, and I'll check current options for you.</p>
           <p lang="th">ยังไม่มีห้องที่ตรงกับเงื่อนไขค่ะ ทักมาบอกงบและทำเลได้เลย ฝนจะช่วยหาให้ค่ะ</p>
-          <a href="#contact" class="btn btn-mango">Ask Fon</a>
+          <a href="#contact" class="btn btn-dark">Ask Fon</a>
         </div>
 
-        <p class="more-note">Don't see the right one? <a href="#contact">Tell me your budget</a> — I have more rooms not listed here.</p>
+        <p class="more-note">Looking for something different? <a href="#contact">Share your budget</a> — more rooms are available on request.</p>
       </div>
     </section>
 
     <!-- ===== About ===== -->
-    <section id="about" aria-labelledby="about-title">
+    <section id="about" aria-labelledby="about-title" style="padding-top:0">
       <div class="wrap">
         <div class="about">
           <div class="about-text">
             <div class="about-head">
               <div class="avatar" aria-hidden="true">F</div>
               <div>
+                <span class="eyebrow">About me</span>
                 <h2 id="about-title">Hi, I'm Fon 👋</h2>
-                <p>Your room finder in Bangkok</p>
+                <p class="role">Room rental agent · Bangkok</p>
               </div>
             </div>
-            <p style="margin-top:16px">I help people find rooms and condos in Bangkok — mostly around Lat Phrao, Chok Chai, Ratchada and nearby. Moving to a new place can be stressful, especially in a new city, so I keep things simple: clear prices, real photos, and honest answers.</p>
+            <p>I help renters find rooms and condos in Bangkok, mainly around Lat Phrao, Chok Chai, Ratchada and nearby areas. Moving can be stressful — especially in a new city — so I keep the process simple: clear prices, real photos and straightforward answers.</p>
             <p class="about-thai" lang="th">สวัสดีค่ะ ฝนเองนะคะ 😊 ฝนช่วยหาห้องเช่าและคอนโดแถวลาดพร้าว โชคชัย 4 รัชดา และย่านใกล้ๆ ค่ะ รู้ดีว่าการหาที่อยู่ใหม่ค่อนข้างเหนื่อย ฝนเลยตั้งใจทำให้ทุกอย่างง่ายและตรงไปตรงมา บอกราคาจริง ใช้รูปจริง มีอะไรสงสัยถามได้ตลอดเลยค่ะ</p>
           </div>
           <ul class="points">
             <li>
               <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.8A8 8 0 1 1 21 12z"/></svg></span>
-              <div><strong>Clear communication</strong><span>I explain the contract, deposit and bills before you decide.</span><span class="th" lang="th">อธิบายสัญญา เงินมัดจำ และค่าใช้จ่ายให้ชัดก่อนตัดสินใจ</span></div>
+              <div><strong>Clear communication</strong><span>Contract terms, deposit and monthly bills are explained before you decide.</span><span class="th" lang="th">อธิบายสัญญา เงินมัดจำ และค่าใช้จ่ายให้ชัดก่อนตัดสินใจ</span></div>
             </li>
             <li>
               <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
-              <div><strong>Lat Phrao local</strong><span>I know the sois, the MRT stops, and the buildings worth your time.</span><span class="th" lang="th">รู้จักซอย สถานี MRT และตึกดีๆ ในย่านนี้</span></div>
+              <div><strong>Local knowledge</strong><span>Familiar with the Lat Phrao area — its sois, MRT stops and buildings worth considering.</span><span class="th" lang="th">รู้จักซอย สถานี MRT และตึกดีๆ ในย่านนี้</span></div>
             </li>
             <li>
               <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h7M7.5 3v2M5 9c1.5 3 4 5 6 6M10 5c-.5 4-3 7-6 9M13 21l4-10 4 10M14.5 18h5"/></svg></span>
-              <div><strong>Basic Thai + English</strong><span>Comfortable helping both locals and foreigners.</span><span class="th" lang="th">ยินดีช่วยทั้งคนไทยและชาวต่างชาติค่ะ</span></div>
+              <div><strong>Thai &amp; English</strong><span>Happy to assist both Thai and international renters.</span><span class="th" lang="th">ยินดีช่วยทั้งคนไทยและชาวต่างชาติค่ะ</span></div>
             </li>
           </ul>
         </div>
@@ -617,13 +753,18 @@
     </section>
 
     <!-- ===== How it works ===== -->
-    <section aria-labelledby="how-title" style="padding-top:0">
+    <section id="how" aria-labelledby="how-title" style="padding-top:0">
       <div class="wrap">
-        <div class="section-title"><h2 id="how-title">How it works</h2></div>
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Simple process</span>
+            <h2 id="how-title">How it works</h2>
+          </div>
+        </div>
         <ol class="steps">
-          <li><span class="n">1</span><div><h3>Send me a message</h3><p>Your budget, move-in date, and where you work or study.</p></div></li>
-          <li><span class="n">2</span><div><h3>See your options</h3><p>I send photos and details, then arrange viewings that suit you.</p></div></li>
-          <li><span class="n">3</span><div><h3>Move in</h3><p>I help with the contract and deposit, so you can move in with confidence.</p></div></li>
+          <li><span class="n">1</span><div><h3>Send a message</h3><p>Share your budget, preferred move-in date and where you work or study.</p></div></li>
+          <li><span class="n">2</span><div><h3>Review your options</h3><p>Receive photos and details of suitable rooms, then schedule viewings at a time that suits you.</p></div></li>
+          <li><span class="n">3</span><div><h3>Move in</h3><p>Get support with the contract and deposit, so you can move in with confidence.</p></div></li>
         </ol>
       </div>
     </section>
@@ -632,9 +773,9 @@
     <section id="contact" aria-labelledby="contact-title" style="padding-top:0">
       <div class="wrap">
         <div class="contact">
-          <span class="kicker">Let's talk</span>
-          <h2 id="contact-title">Looking for a room? Just say hi.</h2>
-          <p>Send your budget and preferred area — I'll reply with options. <span lang="th">ทักมาได้เลยค่ะ</span></p>
+          <span class="eyebrow">Get in touch</span>
+          <h2 id="contact-title">Ready to find your room?</h2>
+          <p class="lead">Send your budget and preferred area, and I'll reply with suitable options. <span lang="th">ทักมาได้เลยค่ะ</span></p>
           <div class="contact-actions">
             <a class="btn btn-line" href="https://line.me/ti/p/~your-line-id" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3.1.7 0 1l-.1.9c0 .3-.2 1 .9.6 1.1-.5 5.9-3.5 8-6C21.4 14.3 22 12.7 22 11c0-4.4-4.5-8-10-8z"/></svg>
@@ -645,7 +786,7 @@
               Chat on WhatsApp
             </a>
           </div>
-          <p class="hours">Available every day, 9:00 – 20:00 (Bangkok time)</p>
+          <p class="hours">Available daily, 9:00 – 20:00 (Bangkok time)</p>
         </div>
       </div>
     </section>
@@ -654,15 +795,15 @@
 
   <footer>
     <div class="wrap foot">
-      <div><strong>TeaLeafAndMangoSticky</strong><br />Easy rooms in Bangkok — Lat Phrao &amp; beyond</div>
+      <div><strong>TeaLeafAndMangoSticky</strong><br />Affordable rooms in Bangkok — Lat Phrao &amp; beyond</div>
       <nav aria-label="Footer">
-        <a href="#rooms">Rooms</a><a href="#about">About</a><a href="#contact">Contact</a>
+        <a href="#rooms">Rooms</a><a href="#about">About</a><a href="#how">How it works</a><a href="#contact">Contact</a>
       </nav>
       <div>© <span id="year">2026</span> Fon · Bangkok, Thailand</div>
     </div>
   </footer>
 
-  <!-- Mobile bottom contact bar -->
+  <!-- Mobile contact bar -->
   <div class="bottom-bar" aria-label="Quick contact">
     <a class="btn btn-wa" href="https://wa.me/66xxxxxxxxx" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.3 7.9L3 21l1.2-4.5A9 9 0 1 1 21 12z"/></svg>
@@ -677,18 +818,19 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // ---------- Train map + budget filter ----------
+    // ---------- Station map + budget filter ----------
     (function () {
       var rooms = Array.prototype.slice.call(document.querySelectorAll(".room"));
       var stops = Array.prototype.slice.call(document.querySelectorAll(".stop"));
-      var chips = Array.prototype.slice.call(document.querySelectorAll('.chip[data-filter="budget"]'));
-      var train = document.getElementById("train");
-      var line = document.getElementById("map-line");
+      var segs = Array.prototype.slice.call(document.querySelectorAll(".seg"));
       var map = document.getElementById("map");
+      var track = document.getElementById("track");
+      var fill = document.getElementById("track-fill");
+      var train = document.getElementById("train");
       var scroller = document.getElementById("map-scroll");
       var empty = document.getElementById("room-empty");
-      var countEl = document.getElementById("results-count");
-      var station = "any", budget = "any", trainX = null, timer;
+      var results = document.getElementById("results-count");
+      var station = "any", budget = "any", lastX = null;
 
       function inBudget(r) {
         if (budget === "any") return true;
@@ -696,31 +838,29 @@
         return p >= b[0] && p <= b[1];
       }
       function atStation(r, st) { return st === "any" || r.dataset.location === st; }
+      function stopFor(st) { return stops.filter(function (b) { return b.dataset.station === st; })[0]; }
       function centerOf(btn) {
         var m = map.getBoundingClientRect(), d = btn.querySelector(".stop-dot").getBoundingClientRect();
         return d.left - m.left + d.width / 2;
       }
-      function currentStop() { return stops.filter(function (b) { return b.dataset.station === station; })[0]; }
-      function drawLine() {
-        var a = centerOf(stops[0]), z = centerOf(stops[stops.length - 1]);
-        line.style.left = (a - 12) + "px";
-        line.style.width = (z - a + 24) + "px";
+
+      function layout(animate) {
+        var start = centerOf(stops[0]), end = centerOf(stops[stops.length - 1]);
+        var x = centerOf(stopFor(station));
+        track.style.left = start + "px";
+        track.style.width = (end - start) + "px";
+        fill.style.left = start + "px";
+
+        if (!animate) { train.style.transition = "none"; fill.style.transition = "none"; }
+        if (lastX !== null && x !== lastX) train.classList.toggle("flip", x < lastX);
+        train.style.left = (x - train.offsetWidth / 2) + "px";
+        fill.style.width = (x - start) + "px";
+        lastX = x;
+        if (!animate) { train.offsetWidth; train.style.transition = ""; fill.style.transition = ""; }
+
+        scroller.scrollTo({ left: Math.max(0, x - scroller.clientWidth / 2), behavior: animate ? "smooth" : "auto" });
       }
-      function moveTrain(animate) {
-        var btn = currentStop();
-        var x = centerOf(btn) - train.offsetWidth / 2;
-        if (!animate) train.style.transition = "none";
-        if (animate && trainX !== null && x !== trainX) {
-          train.classList.toggle("flip", x < trainX);
-          train.classList.add("moving");
-          clearTimeout(timer);
-          timer = setTimeout(function () { train.classList.remove("moving"); }, 900);
-        }
-        train.style.left = x + "px";
-        trainX = x;
-        if (!animate) { train.offsetWidth; train.style.transition = ""; }
-        scroller.scrollTo({ left: Math.max(0, centerOf(btn) - scroller.clientWidth / 2), behavior: animate ? "smooth" : "auto" });
-      }
+
       function apply() {
         var shown = 0;
         rooms.forEach(function (r) {
@@ -731,40 +871,39 @@
         stops.forEach(function (b) {
           var n = rooms.filter(function (r) { return atStation(r, b.dataset.station) && inBudget(r); }).length;
           var el = b.querySelector(".stop-count");
-          el.textContent = n ? n + (n === 1 ? " room" : " rooms") : "soon";
-          el.classList.toggle("zero", !n);
+          el.textContent = n ? n + (n === 1 ? " room" : " rooms") : "No listings";
+          el.classList.toggle("has", n > 0);
           b.setAttribute("aria-pressed", b.dataset.station === station ? "true" : "false");
         });
-        chips.forEach(function (c) { c.setAttribute("aria-pressed", c.dataset.value === budget ? "true" : "false"); });
+        segs.forEach(function (s) { s.setAttribute("aria-pressed", s.dataset.budget === budget ? "true" : "false"); });
         empty.hidden = shown > 0;
-        var where = station === "any" ? "" : " · " + currentStop().querySelector(".stop-name").textContent;
-        countEl.textContent = shown + (shown === 1 ? " room" : " rooms") + where;
+        var name = station === "any" ? "" : " near " + stopFor(station).querySelector(".stop-name").textContent;
+        results.textContent = shown + (shown === 1 ? " room" : " rooms") + name;
       }
+
       stops.forEach(function (b) {
-        b.addEventListener("click", function () {
-          station = b.dataset.station; apply(); moveTrain(true);
-        });
+        b.addEventListener("click", function () { station = b.dataset.station; apply(); layout(true); });
       });
-      chips.forEach(function (c) {
-        c.addEventListener("click", function () { budget = c.dataset.value; apply(); });
+      segs.forEach(function (s) {
+        s.addEventListener("click", function () { budget = s.dataset.budget; apply(); });
       });
-      window.addEventListener("resize", function () { drawLine(); moveTrain(false); });
-      apply(); drawLine(); moveTrain(false);
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { drawLine(); moveTrain(false); });
+      window.addEventListener("resize", function () { layout(false); });
+      apply(); layout(false);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { layout(false); });
     })();
 
-    // ---------- Photo carousels: swipe, arrows, dots, counter ----------
+    // ---------- Photo carousels: swipe, arrows, dots, counter, keyboard ----------
     document.querySelectorAll(".gallery").forEach(function (gallery) {
       var track = gallery.querySelector(".gallery-track");
       var slides = track.querySelectorAll("img");
       var n = slides.length;
       if (n < 2) return;
-      var svg = function (d) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + d + '"/></svg>'; };
+      var icon = function (d) { return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + d + '"/></svg>'; };
 
       var prev = document.createElement("button");
-      prev.className = "g-btn prev"; prev.type = "button"; prev.setAttribute("aria-label", "Previous photo"); prev.innerHTML = svg("M15 18l-6-6 6-6");
+      prev.className = "g-btn prev"; prev.type = "button"; prev.setAttribute("aria-label", "Previous photo"); prev.innerHTML = icon("M15 18l-6-6 6-6");
       var next = document.createElement("button");
-      next.className = "g-btn next"; next.type = "button"; next.setAttribute("aria-label", "Next photo"); next.innerHTML = svg("M9 18l6-6-6-6");
+      next.className = "g-btn next"; next.type = "button"; next.setAttribute("aria-label", "Next photo"); next.innerHTML = icon("M9 18l6-6-6-6");
       var counter = document.createElement("span");
       counter.className = "g-count";
       var dots = document.createElement("div");
